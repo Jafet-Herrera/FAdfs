@@ -20,4 +20,9 @@ class Rol extends Model
     public function deptos(){
         return $this->belongsTo(Area::class,'area_id');
     }
+
+    public function permisosRol(){
+        return $this->hasMany(PermisosRolsAplicativo::class,'rol_id');
+
+    }
 }

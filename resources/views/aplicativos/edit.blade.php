@@ -65,26 +65,36 @@
                             @enderror
                             </div>
             
+                            <div class="form-group mt-2">               
+                            
+                                <label for="icon" class="form-label">
+                                    <span>
+                                        {{__('Icono')}} 
+                                    </span>
+                                    <span class="ps-2">
+                                        <i class="{{$apps->d_icono}}"></i>
+                                    </span>
+                                </label>
+                                <input type="text" class="form-control  @error('icon') is invalid @enderror" id="icon" name="icon" value="{{$apps->d_icono}}" >
+                                @error('icon')
+                                    <span class="invalid feedback">
+                                    <strong class="text-danger">{{$message}}</strong>
+                                    </span>                          
+                                @enderror
+                            </div>
+            
+                            </div>
+
                             <div class="form-group mt-2">
             
-                        
-                            <label for="icon" class="form-label">
-                                <span>
-                                    {{__('Icono')}} 
-                                </span>
-                                <span class="ps-2">
-                                    <i class="{{$apps->d_icono}}"></i>
-                                </span>
-                            </label>
-                            <input type="text" class="form-control  @error('icon') is invalid @enderror" id="icon" name="icon" value="{{$apps->d_icono}}" >
-                            @error('icon')
-                                <span class="invalid feedback">
-                                <strong class="text-danger">{{$message}}</strong>
-                                </span>                          
-                            @enderror
-                            </div>
-            
-                            </div>
+                                <label for="ruta" class="form-label">{{__(' Ruta de la app')}}</label>
+                                <input type="text" class="form-control @error('ruta') is invalid @enderror" id="ruta" name="ruta" value="{{/* old( */$apps->d_ruta/* ) */}}" >
+                                @error('ruta')
+                                    <span class="invalid feedback">
+                                    <strong class="text-danger">{{$message}}</strong>
+                                    </span>                          
+                                @enderror
+                                </div>
                         </div>
                         <div class="modal-footer">
                         <a role="button" href="{{route('apps.index')}}" class="text-white btn btn-danger" >

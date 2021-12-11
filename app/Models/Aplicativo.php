@@ -14,6 +14,7 @@ class Aplicativo extends Model
         'modulo_id',
         'd_aplicativo',
         'd_icono',
+        'd_ruta',
     ];
 
     //Relación N:1 de apps a modulos
@@ -26,5 +27,9 @@ class Aplicativo extends Model
         ? Aplicativos FK=>modulo_id   | modulos PK=>id
          */
 
+    }
+
+    public function permisoAplicativoRol(){
+        return $this->hasMany(PermisosRolsAplicativo::class,'aplicativo_id');
     }
 }

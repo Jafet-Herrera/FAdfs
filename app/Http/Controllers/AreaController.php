@@ -23,6 +23,7 @@ class AreaController extends Controller
         $areas=Area::all();
         return view('deptos_fundacion.index')
             ->with('areas',$areas);
+
     }
 
     /**
@@ -82,6 +83,7 @@ class AreaController extends Controller
     
         return view('deptos_fundacion.edit')
         ->with('deptos',$repuesta);
+
     }
 
     /**

@@ -54,6 +54,9 @@
                         {{__('Icono')}}
                       </th>
                       <th class="table-active">
+                        {{__('Ruta')}}
+                      </th>
+                      <th class="table-active">
                         {{__('Modulo')}}
                       </th>
                       <th class="table-active">
@@ -69,6 +72,8 @@
                         <td>{{($i)+1}}</td>
                         <td>{{$apps->d_aplicativo}}</td>
                         <td><i class="{{$apps->d_icono}}"></i></td>
+                        <td>{{$apps->d_ruta}}</td>
+
                         <td>{{$apps->modulos->d_modulo}}</td>
                         <td>{{$apps->created_at}}</td>
                         <td>

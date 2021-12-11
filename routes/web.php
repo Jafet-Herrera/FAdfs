@@ -82,9 +82,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::put('/roles-fundacion/{rol}','RolController@update')->name('roles.update');
 
 
-    //* peromisos roles
+    //* permisos roles
      // index
-     Route::get('/permisos-rol', 'PermisoAccionController@index')->name('permisos.index');
-    
+     Route::get('/permisos-rol', 'PermisoRolsAplicativoController@index')->name('permisos.index');
+     
+     Route::get('/permisos-rol/{rol}', 'PermisoRolsAplicativoController@show')->name('permisos.show');
+
      //store(insert data)    
-     Route::post('/permisos-rol','PermisoAccionController@store')->name('permisos.store');
+     Route::post('/permisos-rol','PermisosRolsAplicativoController@store')->name('permisos.store');
+
+
+     //* Roles Usuarios
+     // index
+     Route::get('/asignar-usuarios', 'UsersController@index')->name('asig-user.index');

@@ -26,7 +26,11 @@ window.axios = require('axios');
 Vue.use(VueSweetalert2);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('btn-guardar', require('./components/btnGuardarApp.vue').default);
+//Vue.component('btn-guardar', require('./components/btnGuardarApp.vue').default);
+
+//*Permisos rol-Aplicacipnes
+Vue.component('radio-rol', require('./components/RadiosPermisosRol.vue').default);
+
 
 console.log(Vue.prototype);
 

@@ -44,6 +44,17 @@
                             </span>                          
                           @enderror
                         </div>
+
+                        <div class="form-group">
+  
+                          <label for="ruta" class="form-label">{{__('Ruta de la app')}}</label>
+                          <input type="text" class="form-control @error('ruta') is invalid @enderror" id="ruta" name="ruta" value="{{old('ruta')}}" >
+                          @error('ruta')
+                            <span class="invalid feedback">
+                              <strong class="text-danger">{{$message}}</strong>
+                            </span>                          
+                          @enderror
+                        </div>
   
                         <div class="form-group mt-2">
   

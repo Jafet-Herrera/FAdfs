@@ -2,3 +2,25 @@
 #offcavasHeader-bg-appAuthSystem{
     background-color: rgba(126, 166, 224, .50);
 }
+
+
+.avatar-for-edit-profile-user {
+    border-radius: 50%;
+    @media screen and (min-width:1919px) {
+        height: 5vw;
+        width: 5vw;
+    }
+    @media screen and (max-width:1918px) {
+        height: 100%;
+        width: 100%;
+    }
+    
+    object-fit: cover;
+    object-position: center;
+    //border:2px solid #212529;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.45)
+}
+
+.Navigators-apps:hover{
+    background-color: rgba(0, 0, 0, 0.15);
+}

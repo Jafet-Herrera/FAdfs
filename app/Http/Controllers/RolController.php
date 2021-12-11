@@ -33,6 +33,7 @@ class RolController extends Controller
         return view('roles.index')
         ->with('deptos', $repuesta_consulta_areas)
         ->with('roles',$repuesta_consulta_roles);
+
     }
 
     /**
@@ -93,6 +94,7 @@ class RolController extends Controller
         return view('roles.edit')
             ->with('deptos',$repuesta_area)
             ->with('roles',$repuesta_rol);
+
     }
 
     /**

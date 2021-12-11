@@ -1,9 +1,28 @@
 //* Tamaño de icono de la fundación_sin_fondo_sin_letras
 .size-icon-FAJ{
     height: 3vw; width: 3vw;
+    @media screen and (max-width:576px) {
+        
+        height: 5vw; width: 5vw;
+    }
+    @media screen and (min-width:577px)and (max-width:767px)
+        {
+        
+        height: 6vw; width: 6vw;
+    }
+
 }
 
 // Iconos adaptables
 i{
     font-size: 1.5vw;
+    @media screen and (max-width:767px)  {
+        
+        font-size: 4vw;
+    }
+    @media screen and (min-width:768px)and (max-width:991px) {
+        
+        font-size: 2vw;
+    }
+
 }

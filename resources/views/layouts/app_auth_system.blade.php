@@ -1,3 +1,9 @@
+@php
+
+    include '../app/Http/Controllers/MenuLateralIzquierdoDesplegable.php';
+
+@endphp
+{{-- {{$datosUsurio}} --}}
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -21,7 +27,7 @@
 </head>
 <body>
     <div id="app">
-        
+        {{-- {{$modulos->aplicativos}} --}}
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-lg">
             <div class="container-fluid">
                 @guest
@@ -97,28 +103,53 @@
 
         {{-- @Inicio_MenuLateralOffcanvas --}}
         <article>
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="MenuLateralOffcanvas" aria-labelledby="MenuLateralOffcanvas">
-                <div class="offcanvas-header" id="offcavasHeader-bg-appAuthSystem">
-                    <div class="container text-center bg-danger">
-                        <span class="text-center">
-                           <h2>
-                               Imagen de usuario
-                            </h2>
-                        </span>
-                        <br>
-                        <h2>
-                            Usuario
-                        </h2>
-                        <h3>
-                            Rol
-                        </h3>
+
+            {{-- <div >
+    
+            </div>
+            <div class="mt-2">
+                <h2 class="text-dark">
+                    {{$datosUsurio->d_nombre}}
+                </h2>
+                <h3>
+                    <span>{{__('Rol:')}}</span>
+                    <span> {{$datosUsurio->rol_id}}</span>
+                </h3>
+            </div> --}}
+
+            <div class="offcanvas offcanvas-start p-0" tabindex="-1" id="MenuLateralOffcanvas" aria-labelledby="MenuLateralOffcanvas">
+                <div class="offcanvas-header p-0" id="offcavasHeader-bg-appAuthSystem">
+                    @if($datosUsurio != null)
+
+                    <div class="container-fluid ps-1 mt-1 mb-2">
+                        <div class="row">
+                            <div class="col-5 mt-xxl-4">
+                                <img {{-- src="/storage/{{$usuario->t_imgUsu}}" --}}src="/storage/images/avatars/undraw_female_avatar_w3jk.png" class="avatar-for-edit-profile-user" alt="" {{-- style="width: 300px; border-radius:15rem" --}} >
+                            </div>
+                            <div class="col-5">
+                                <div class="mt-5">
+                                    <h2 class="text-dark">
+                                        {{$datosUsurio->d_nombre}}
+                                    </h2>
+                                    <h3 >
+                                        <span>{{__('Rol:')}}</span>
+                                        <span class="font_rolAvatar"> {{$datosUsurio->rol_id}}</span>
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                        </div>
                     </div>
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        
+                    @endif
+
                 </div>
                 <div class="offcanvas-body">
 
                     <div class="container-fluid">
-                        <a href="{{ url('/home') }}" class="nav-link p-0">
+                        <a href="{{ url('/home') }}" class="nav-link p-0" id=Navigators>
                             <div class="text-dark m-0">
                                 <span class="me-2">
                                     <i class="bi bi-speedometer"></i>
@@ -131,35 +162,53 @@
                                 
                                 </div>
                         </a> 
-                        <hr class="mt-0">
+                        {{-- <hr class="mt-0"> --}}
                     </div>  
 
-                     {{-- @Inicio-Web --}}
-                     <div class="container-fluid">
-                        <a role="button" data-bs-toggle="collapse" href="#webCollapse" aria-expanded="false" aria-controls="webCollapse" class="nav-link p-0">
-                            <div class="text-dark m-0">
+ 
+                    @foreach($modulosNavigationMenu as /* $key =>  */$modulos)
+
+                        {{-- @Inicio-Web --}}
+                        <div class="container-fluid mt-2">
+                        <a role="button" data-bs-toggle="collapse" href="#web-{{$modulos->id}}-Collapse" aria-expanded="false" aria-controls="web-{{$modulos->id}}-Collapse" class="nav-link p-0 ">
+                            <div class="text-dark Navigators-mods m-0 ">
                                 <span class="me-2">
-                                    <i class="bi bi-window"></i>
+                                    <i class="{{$modulos->d_icono}}"></i>
                                 </span>
                                 <span>
                                     <h2 class="d-inline">
-                                        {{__('Web')}}
+                                        {{$modulos->d_modulo}}
                                     </h2>
                                 </span>                              
                             </div>
                         </a> 
-                        <div class="collapse ms-4" id="webCollapse">
-                            <br>
-                            <a href="" class="text-dark">
-                                <i class="bi bi-collection"></i>
+                        
+
+                        @foreach($modulos->aplicativos as /* $key =>  */$aplicativos)
+                        <div class="collapse ms-4 Navigators-apps" id="web-{{$modulos->id}}-Collapse">    
+                            <a href="{{url($aplicativos->d_ruta)}}" class="text-dark m-0 nav-link">
+                                <span class="me-2">
+                                    <i class="{{$aplicativos->d_icono}}"></i>
+                                </span>
+                                <span>
+                                    <h3 class="d-inline">
+                                        {{$aplicativos->d_aplicativo}}
+                                    </h3>
+                                </span>                              
                             </a>
                         </div>
-                        <hr class="mt-0">
+                        
+                        @endforeach
                     </div> 
                     {{-- @Fin-Web --}}
+                    
+                    
+                    @endforeach
+                    <hr class="mt-2">
+
 
                     {{-- @Inicio-Fundación --}}
-                    <div class="container-fluid">
+                   {{--  <div class="container-fluid mt-2">
                         <a href="{{ url('/home') }}" class="nav-link p-0">
                             <div class="text-dark m-0">
                                 <span class="me-2">
@@ -174,11 +223,11 @@
                                 </div>
                         </a> 
                         <hr class="mt-0">
-                    </div> 
+                    </div>  --}}
                     {{-- @Fin-Fundación --}}
                     
                     {{-- @Inicio-Usuarios --}}
-                    <div class="container-fluid">
+                   {{--  <div class="container-fluid">
                         <a href="{{ url('/home') }}" class="nav-link p-0">
                             <div class="text-dark m-0">
                                 <span class="me-2">
@@ -193,11 +242,11 @@
                                 </div>
                         </a> 
                         <hr class="mt-0">
-                    </div> 
+                    </div>  --}}
                     {{-- @Fin-Usuarios --}}
 
                     {{-- @Inicio-News --}}
-                    <div class="container-fluid">
+                   {{--  <div class="container-fluid">
                         <a href="{{ url('/home') }}" class="nav-link p-0">
                             <div class="text-dark m-0">
                                 <span class="me-2">
@@ -212,11 +261,11 @@
                                 </div>
                         </a> 
                         <hr class="mt-0">
-                    </div> 
+                    </div>  --}}
                     {{-- @Fin-News --}}                    
 
                     {{-- @Inicio-Adopción --}}
-                    <div class="container-fluid">
+                   {{--  <div class="container-fluid">
                         <a href="{{ url('/home') }}" class="nav-link p-0">
                             <div class="text-dark m-0">
                                 <span class="me-2">
@@ -231,11 +280,11 @@
                                 </div>
                         </a> 
                         <hr class="mt-0">
-                    </div> 
+                    </div>  --}}
                     {{-- @Fin-Adopción --}}
 
                     {{-- @Inicio-Configuraciones --}}
-                    <div class="container-fluid">
+                    {{-- <div class="container-fluid">
                         <a href="{{ url('/home') }}" class="nav-link p-0">
                             <div class="text-dark m-0">
                                 <span class="me-2">
@@ -250,11 +299,11 @@
                                 </div>
                         </a> 
                         <hr class="mt-0">
-                    </div> 
+                    </div>  --}}
                     {{-- @Fin-Configuraciones --}}
 
                     {{-- @Inicio-Configuraciones --}}
-                    <div class="container-fluid">
+                    {{-- <div class="container-fluid">
                         <a href="{{ url('/home') }}" class="nav-link p-0">
                             <div class="text-dark m-0">
                                 <span class="me-2">
@@ -269,7 +318,7 @@
                                 </div>
                         </a> 
                         <hr class="mt-0">
-                    </div> 
+                    </div>  --}}
                     {{-- @Fin-Configuraciones --}}
 
                 </div>

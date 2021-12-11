@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aplicativo;
 use App\Models\modulo;
 use Illuminate\Http\Request;
+// use App\Http\Controllers\MenuLateralIzquierdoDesplegable;
 
 class HomeController extends Controller
 {
@@ -24,6 +26,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+       
+            
+           
+        
         return view('home');
+        //  -> with('modulos',Controller::navigationFa());
     }
 }

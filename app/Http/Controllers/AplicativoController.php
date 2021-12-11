@@ -53,6 +53,8 @@ class AplicativoController extends Controller
                 'modulo' => 'required',
                 'app' => 'required|string|min:3|max:20',
                 'icon' => 'required|string|min:3|max:30',
+                'ruta' => 'required|string|min:3|max:30',
+
             ]
             );
         
@@ -61,7 +63,9 @@ class AplicativoController extends Controller
             [
                 'modulo_id'=> $data['modulo'],
                 'd_aplicativo' => $data['app'],
-                'd_icono' => $data['icon']
+                'd_icono' => $data['icon'],
+                'd_ruta' => $data['ruta']
+
             ]
         );
 
@@ -76,6 +80,10 @@ class AplicativoController extends Controller
      */
     public function show(Aplicativo $aplicativo)
     {
+
+
+
+        
         //
     }
 
@@ -110,12 +118,16 @@ class AplicativoController extends Controller
     public function update(Request $request/* , Aplicativo $aplicativo */)
     {
         $apps =Crypt::decryptString($request->route('aplicativo'));
+        
+        
 
         $data=$request->validate(
             [
                 'modulo' => 'required',
                 'app' => 'required|string|min:3|max:20',
                 'icon' => 'required|string|min:3|max:30',
+                'ruta' => 'required|string|min:3|max:30',
+
             ]
         );
         
@@ -124,9 +136,10 @@ class AplicativoController extends Controller
         $app->modulo_id= $data['modulo'];
         $app->d_aplicativo=$data['app'];
         $app->d_icono= $data['icon'];
+        $app->d_ruta= $data['ruta'];
         $app->updated_at= date('Y-m-d H:i:s');
+        
 
-        $app->save();
 
         return redirect()->action('AplicativoController@index');
     }

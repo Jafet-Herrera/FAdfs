@@ -27,6 +27,14 @@ class DatabaseSeeder extends Seeder
         
         $this->call(UserSeeder::class);
 
+        //Permisos de acceso de los roles a las páginas
+        $this->call(PermisosRolSeeder::class);
+
+        //Aciones de los permisos
+        //$this->call(AccionesPermisoSeeder::class);
+
+        
+
 
 
 

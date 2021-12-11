@@ -18,6 +18,7 @@ class CreateAplicativosTable extends Migration
             $table->foreignId('modulo_id')->references('id')->on('modulos');
             $table->string('d_aplicativo', 60);
             $table->string('d_icono');
+            $table->string('d_ruta', 30);
             $table->timestamps();
         });
     }
